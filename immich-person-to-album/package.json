@@ -1,0 +1,37 @@
+{
+  "name": "immich-person-to-album",
+  "version": "1.0.2",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "npx tsc",
+    "test": "podman build --build-arg PACKAGE_VERSION=$(npm pkg get version | xargs) --format docker -t immich-person-test .. && podman run --init -it -p=3000:3000 --userns=keep-id -v ../data:/data:Z --restart=always immich-person-test",
+    "start": "node dist/index.js"
+  },
+  "author": "Alan Grainger",
+  "license": "AGPL-3.0",
+  "description": "Automatically add people to an album, so you can then share the album with another user.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alangrainger/immich-person-to-album.git"
+  },
+  "main": "dist/index.js",
+  "bin": "dist/index.js",
+  "dependencies": {
+    "tslib": "^2.8.1",
+    "@immich/sdk": "^1.137.3",
+    "node-cron": "^4.2.1",
+    "node-fetch": "^2.6.12",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.111",
+    "@typescript-eslint/eslint-plugin": "5.29.0",
+    "@typescript-eslint/parser": "5.29.0",
+    "eslint": "^8.49.0",
+    "eslint-config-standard": "^17.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2",
+    "@types/node-fetch": "^2.6.12",
+    "@types/form-data": "^2.5.0"
+  }
+}
